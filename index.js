@@ -46,12 +46,20 @@ app.delete('/expenses/:id',async(req,res)=>{
 });
 
 
-app.post('/expense', async(req, res) => {
-    console.log(req.body);
-    const newExpense = req.body;
-    await Expense.create(newExpense);
-    res.send('Created');
+app.put('/expense/:id', async(req, res) => {
+    const id = req.params.id;
+    const updateObject = req.body;
+    const updatedObject = await Expense.findByIdAndUpdate(id,{$set : updateObject},{
+      new:true
+    })
+    res.send(updatedObject);
   })
+  
+  
+app.post('/expense',async(req,res)=>{
+  console.log(req.body)
+
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
