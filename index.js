@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express()
 const port = 3000
 const Expense = require('./models/expense');
-mongoose.connect('mongodb://localhost:27017/Expense-tracker',{ useUnifiedTopology :true});
+mongoose.connect('mongodb+srv://SrinivasanG:Srini_2502@cluster0.hm5os3y.mongodb.net/?retryWrites=true&w=majority',{ useUnifiedTopology :true});
 
 app.use(express.json());
 app.get('/expenses',async (req,res)=>{
@@ -46,7 +46,7 @@ app.delete('/expenses/:id',async(req,res)=>{
 });
 
 
-app.put('/expense/:id', async(req, res) => {
+app.put('/expenses/:id', async(req, res) => {
     const id = req.params.id;
     const updateObject = req.body;
     const updatedObject = await Expense.findByIdAndUpdate(id,{$set : updateObject},{
@@ -56,8 +56,12 @@ app.put('/expense/:id', async(req, res) => {
   })
   
   
-app.post('/expense',async(req,res)=>{
+app.post('/expenses',async(req,res)=>{
   console.log(req.body)
+  const newExpense = req.body;
+    await Expense.create(newExpense);
+    res.send('Created');
+
 
 })
 
