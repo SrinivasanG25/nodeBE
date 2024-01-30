@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+app.listen(port)
 const Expense = require('./models/expense');
 mongoose.connect('mongodb+srv://SrinivasanG:Srini_2502@cluster0.hm5os3y.mongodb.net/newdb?retryWrites=true&w=majority',{ useUnifiedTopology :true});
 
