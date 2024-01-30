@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express()
 const port = 3000
 const Expense = require('./models/expense');
-mongoose.connect('mongodb+srv://SrinivasanG:Srini_2502@cluster0.hm5os3y.mongodb.net/?retryWrites=true&w=majority',{ useUnifiedTopology :true});
+mongoose.connect('mongodb+srv://SrinivasanG:Srini_2502@cluster0.hm5os3y.mongodb.net/newdb?retryWrites=true&w=majority',{ useUnifiedTopology :true});
 
 app.use(express.json());
 app.get('/expenses',async (req,res)=>{
